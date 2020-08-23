@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
-import { rhythm } from "../../../utils/typography";
+import { rhythm } from "../utils/typography";
 
 type PostsProps = {
   postsPerPage?: number;
