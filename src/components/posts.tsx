@@ -8,10 +8,10 @@ type PostsProps = {
 };
 
 export const Posts: React.FC<PostsProps> = ({ postsPerPage }) => {
-  const { allMarkdownRemark: { edges } } = useStaticQuery(
+  const { allMdx: { edges } } = useStaticQuery(
     graphql`
       query {
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
           edges {
             node {
               excerpt,
