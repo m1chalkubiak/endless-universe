@@ -14,9 +14,13 @@ export const Posts: React.FC<PostsProps> = ({ postsPerPage }) => {
         allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
           edges {
             node {
-              excerpt
+              excerpt,
+              timeToRead,
               fields {
-                slug
+                slug,
+              	readingTime {
+          				text
+                },
               }
               frontmatter {
                 date(formatString: "MMMM DD, YYYY")
@@ -45,14 +49,10 @@ export const Posts: React.FC<PostsProps> = ({ postsPerPage }) => {
             {node.frontmatter.title}
           </Link>
         </h3>
-        <small>{node.frontmatter.date}</small>
+        <small>{node.frontmatter.date} - {node.fields.readingTime.text}</small>
       </header>
       <section>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: node.frontmatter.description || node.excerpt,
-          }}
-        />
+        {node.frontmatter.description || node.excerpt}
       </section>
     </article>
   ))
