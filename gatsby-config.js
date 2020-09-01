@@ -26,6 +26,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        defaultLayouts: {
+          default: require.resolve("./src/components/layout.tsx"),
+        },
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [
           {
@@ -61,7 +64,7 @@ module.exports = {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-feed`,
+  
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -83,6 +86,8 @@ module.exports = {
     },
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-feed-mdx`,
+    `gatsby-plugin-typescript`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

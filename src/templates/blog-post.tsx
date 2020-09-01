@@ -1,19 +1,30 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import { MDXRenderer, MDXRendererProps } from 'gatsby-plugin-mdx';
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import Bio from '../components/bio';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import { rhythm, scale } from '../utils/typography';
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
+interface BlogPostTemplateProps {
+  data: {
+    mdx: MDXRendererProps
+    site: {
+      siteMetadata: {
+        title: string
+      }
+    }
+  }
+  pageContext: any,
+}
+
+export const BlogPostTemplate: React.FC<BlogPostTemplateProps>  = ({ data, pageContext }) => {
   const post = data.mdx
-  const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -87,11 +98,6 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)

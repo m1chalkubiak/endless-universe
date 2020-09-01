@@ -1,15 +1,13 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react';
+import { Link, PageProps } from 'gatsby';
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Button from "../components/button";
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import Button from '../components/button/button.component';
 
-const Index = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title;
-
+const Index: React.FC<PageProps> = () => {
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <SEO
         title='About project'
         keywords={[`javascript`, `react`, `gatsby`, `netlify cms`]}
@@ -29,19 +27,8 @@ const Index = ({ data, location }) => {
         <Link to="/blog/">
           <Button marginTop="35px">Go to Blog</Button>
         </Link>
-
     </Layout>
   )
 }
 
 export default Index;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

@@ -1,20 +1,12 @@
 import React from "react"
-import { PageProps, Link, graphql } from "gatsby"
+import { PageProps, Link } from "gatsby"
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { Posts } from '../components/posts';
 
-type DataProps = {
-  site: {
-    siteMetadata: {
-      title: string;
-    } 
-  }
-}
-
-const Blog: React.FC<PageProps<DataProps>> = ({ data, path, location }) => (
-  <Layout title={data.site.siteMetadata.title} location={location}>
+const Blog: React.FC<PageProps> = () => (
+  <Layout>
     <SEO title="Blog" />
     <Posts />
     <Link to="/">Go back to the homepage</Link>
@@ -22,13 +14,3 @@ const Blog: React.FC<PageProps<DataProps>> = ({ data, path, location }) => (
 );
 
 export default Blog;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

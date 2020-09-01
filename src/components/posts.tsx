@@ -1,5 +1,6 @@
-import React from "react"
-import { useStaticQuery, Link, graphql } from "gatsby"
+import React from 'react';
+import { useStaticQuery, Link, graphql } from 'gatsby';
+import { MDXRendererProps } from 'gatsby-plugin-mdx';
 
 import { rhythm } from "../utils/typography";
 
@@ -34,7 +35,7 @@ export const Posts: React.FC<PostsProps> = ({ postsPerPage }) => {
     `
   );
 
-  return edges.map(({ node }) => (
+  return edges.map(({ node }: MDXRendererProps) => (
     <article key={node.fields.slug}>
       <header>
         <h3
@@ -52,7 +53,7 @@ export const Posts: React.FC<PostsProps> = ({ postsPerPage }) => {
         <small>{node.frontmatter.date} - {node.fields.readingTime.text}</small>
       </header>
       <section>
-        {node.frontmatter.description || node.excerpt}
+        {node.excerpt || node.frontmatter.description}
       </section>
     </article>
   ))
