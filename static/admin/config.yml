@@ -1,3 +1,5 @@
+local_backend: true
+
 backend:
   name: github
   repo: m1chalkubiak/endless-universe
@@ -22,3 +24,40 @@ collections:
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'Modules'
+    label: 'Modules'
+    label_singular: 'Module'
+    folder: 'content/modules'
+    create: true
+    nested: # https://www.netlifycms.org/docs/beta-features/#nested-collections
+      depth: 100
+      summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    editor:
+      preview: true
+    media_folder: ''
+    public_folder: ''
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'Resources'
+    label: 'Resources'
+    label_singular: 'Resource'
+    folder: 'content/resources'
+    extension: mdx
+    format: frontmatter
+    create: true
+    nested: # https://www.netlifycms.org/docs/beta-features/#nested-collections
+      depth: 100
+      summary: '{{title}}'
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    editor:
+      preview: true
+    media_folder: ''
+    public_folder: ''
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+				
